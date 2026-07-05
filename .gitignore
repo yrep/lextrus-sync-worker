@@ -1,6 +1,7 @@
 config.yaml
 .env
 **/*.log
+create.sh
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
