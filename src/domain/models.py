@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import List, Optional
 
 
@@ -7,12 +7,17 @@ class PropertyItem(BaseModel):
     updatedAt: Optional[str] = None
     createdAt: Optional[str] = None
 
-    class Config:
-        extra = "allow"
+    model_config = {
+        "extra": "allow"   # id, title, price, ...
+    }
 
 
 class ApiResponse(BaseModel):
     total: int
     limit: int
     offset: int
-    data: List[PropertyItem]
+    data: List[PropertyItem] = Field(alias='items')
+
+    model_config = {
+        "populate_by_name": True
+    }
